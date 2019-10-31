@@ -1,4 +1,6 @@
 import firebase from 'firebase'
+
+
 var config={
     apiKey: "AIzaSyAdjVrArdzogXCzHHiml4RT6RlrSsgJYdc",
     authDomain: "chatapp-3c59f.firebaseapp.com",
