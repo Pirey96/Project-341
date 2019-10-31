@@ -4,6 +4,7 @@ import './../../Main.css';
 import moment from 'moment';
 import { UserIcon, PenIcon } from './../../shared/Icon';
 
+
 export const MessageBoard = () => {
     const currentUser = "Alex";
     const date = new Date()
