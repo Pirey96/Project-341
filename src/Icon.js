@@ -5,6 +5,7 @@ import { faEyeSlash, faEye } from '@fortawesome/free-regular-svg-icons';
 
 library.add(faEyeSlash, faEye);
 
+
 export const EyeSlash = () => <FontAwesomeIcon icon={faEyeSlash}/>
 
 export const Eye = () => <FontAwesomeIcon icon={faEye}/>
