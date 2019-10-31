@@ -16,6 +16,7 @@ export const RightSection = () => {
     );
 };
 
+
 const UserInputSection = () => {
     return(
         <div className="">
