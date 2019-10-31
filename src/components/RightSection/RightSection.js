@@ -5,6 +5,7 @@ import { MessageBoard } from './Board/MessageBoard'
 import './../../App.css';
 import './../Main.css';
 
+
 export const RightSection = () => {
     return(
         <div className="main__layout--rightPannel">
