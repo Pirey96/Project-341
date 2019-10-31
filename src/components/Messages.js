@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import firebase from 'firebase';
 import config from './../firebase.config';
 
-
 class Messages extends Component{
     constructor(props,context){
         super(props,context)
