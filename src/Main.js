@@ -3,8 +3,6 @@ import React, {useState} from 'react';
 import Sender from '/Users/talalbazerbachi/Documents/GitHub/Project-341/src/components/Sender.js';
 import Messages from '/Users/talalbazerbachi/Documents/GitHub/Project-341/src/components/Messages.js';
 
-
-
 export const Main = () => {
      return (
          <div className='main__layout' > 
@@ -13,6 +11,7 @@ export const Main = () => {
          </div>
      );
 };
+
 
 const LeftSection = () => {
     return(
