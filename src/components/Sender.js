@@ -13,6 +13,7 @@ class Sender extends Component{
         }
     }
     //this is called 'life cycle method' function called by the system not the user
+
     componentDidMount(){
         firebase.database().ref('messages/').on('value',(snapshot)=>{
             const currentMessages= snapshot.val()
