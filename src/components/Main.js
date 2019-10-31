@@ -21,6 +21,7 @@ export const Main = () => {
 
 
     useEffect(() => {
+
         let channelsAr = [];
         
         firebase.firestore().collection("channels").get().then((doc) => {
