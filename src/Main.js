@@ -23,6 +23,7 @@ const LeftSection = () => {
     );
 };
 
+
 const RightSection = () => {
     return(
         <div className="main__layout--rightPannel">
