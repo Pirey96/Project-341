@@ -12,7 +12,7 @@ describe('Test displayAppropriateSurveyPage', function() {
     ReactDOM.unmountComponentAtNode(div);
   });
 
-	it('expects rendering same teacher name based on username', function(){
+	it('expects rendering same user name based on username', function(){
 		var request = {
 			session : {session : {title : "person"}}
 		},
