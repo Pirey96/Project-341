@@ -79,7 +79,6 @@ export const ChannelSection = (props) => {
         const channel = getChannel(channelName);
 
         if (!channel.users.includes(participants)) {
-            console.log("HELLO", channel)
             addUserToChannel(channel.id);
         }
         setShowSearch(false);
@@ -228,7 +227,6 @@ const PopUpAddChannel = (props) => {
                     <div>
                         <span className='popUp_briefDesc'> {channelDescription} </span>
                     </div>
-                    {console.log(props.channelExists)}
                     <FloatingLabelTextField 
                     header={'Name'}
                     exception={props.channelExists}

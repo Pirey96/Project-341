@@ -28,7 +28,6 @@ const App = () => {
     }
 
     currentUser = firebase.auth().currentUser;
-    console.log(currentUser);
     firebase.auth().onAuthStateChanged((newUser) => {
       if (user === currentUser) {
         setVerified(true);

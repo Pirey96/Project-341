@@ -6,7 +6,6 @@ import './../../App.css';
 import './../Main.css';
 
 export const RightSection = (props) => {
-    console.log(props.boardData)
     return(
         <div className="main__layout--rightPannel">
             <SearchSection boardData={props.boardData} />

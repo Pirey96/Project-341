@@ -4,7 +4,6 @@ import { LeftMenuHeaderButton } from '../shared/LeftMenuHeaderButton';
 import firebase from 'firebase';
 
 export const PersonalChatSection = (props) => {
-    console.log(props.directMessages)
     return(
         <div className="main__layout--chat">
             <LeftMenuHeaderButton
@@ -45,7 +44,6 @@ const DirectMessages = (props) => {
         }
 
         firebase.database().ref('users/' + userId).once('value').then((snapshot) => {
-            console.log(snapshot)
         });
     }
 

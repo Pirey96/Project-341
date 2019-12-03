@@ -14,7 +14,6 @@ export const InputField = props => {
     const path = props.path;
     const context = props.context;
     const sendTo = props.sendTo;
-    console.log(sendTo);
     
     useEffect(() => {
         getUserUsername();

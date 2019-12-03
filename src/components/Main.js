@@ -63,7 +63,6 @@ export const Main = () => {
 
     const setData = (data, i) => {
         setChannels(data)
-        console.log(data);
         setBoardData(data[i]);
     }
 
