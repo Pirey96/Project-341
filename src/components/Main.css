@@ -730,3 +730,7 @@ li {
   padding: 8px;
   background-color: white;
 }
+
+.image-aspect {
+  max-height: 220px;
+}

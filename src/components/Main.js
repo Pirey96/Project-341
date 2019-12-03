@@ -51,11 +51,21 @@ export const Main = () => {
         firebase.firestore().collection("directMessages").onSnapshot((snap) => {
             //include channel array since before it was outside the listenner an
             let dms = [];
-            snap.forEach(dm => {
-                dms.push({
-                    ...dm.data(),
-                    id: dm.id
-                });
+            snap.forEach(dmSnap => {
+                const directMessage = dmSnap.data();
+                let include = false;
+
+                for (const message of directMessage.users) {
+                    if(message.id === currentUser.uid) {
+                        include = true;
+                    }
+                }
+
+                if (include) {
+                    dms.push({
+                        ...directMessage
+                    });
+                }
             });
             setDms(dms);
         });
@@ -73,14 +83,23 @@ export const Main = () => {
     const clickMenu = (event) => {
         getChannelData(event.currentTarget.lastElementChild.innerText);
     };
-    
 
+    const clickDMMenu = (event) => {
+        getDmData(event.currentTarget.lastElementChild.innerText);
+    };
+    
     const getChannelData = (menu) => {
         for(const channel of channels) {
             if (channel.name === menu) {
                 setIndex(channels.indexOf(channel));
                 return setBoardData(channel);
             }
+        }
+    }
+
+    const getDmData = (name) => {
+        for(const dm of directMessages) {
+
         }
     }
 
@@ -91,10 +110,12 @@ export const Main = () => {
                 <Menu 
                 channels={channels} 
                 directMessages={directMessages} 
-                onClick={clickMenu} 
+                onChannelClick={clickMenu}
+                onDMClick={clickDMMenu}
                 uid={currentUser}
                 selectedChannel={boardData}
                 allChannels={allChannels}
+                dms={directMessages}
                 />
                 <RightSection 
                 sendTo={boardData} 

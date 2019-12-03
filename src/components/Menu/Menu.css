@@ -50,11 +50,9 @@
 }
 
 .search-overlay__search-results {
-    display: inline-block;
-    text-align: left;
+
     position: relative;
     color: black;
-    width: 500px;
     padding: 16px 12px;
     height: max-content;
     border-bottom: 1px lightgray solid;
@@ -68,11 +66,10 @@
 .search-overlay__search-header {
     font-weight: 800;
     font-size: 20px;
-    text-align: left;
-    display: inline-flex;
+    display: flex;
+    text-align: center;
     position: relative;
     color: black;
-    width: 500px;
     padding: 24px 12px 12px;
     border-bottom: 1px lightgray solid;
 }

@@ -97,7 +97,6 @@ export const ChannelSection = (props) => {
     };
 
     const onSubmit = () => {
-        let id = '';
         const currentDate = new Date();
         firebase.firestore().collection('channels').add({
             name: name,
@@ -107,7 +106,6 @@ export const ChannelSection = (props) => {
             date: currentDate,
             users:[]
         }).then((docRef) => {
-            id = docRef.id
             addUserToChannel(docRef.id)
         });
         closeModal(); //close pop-up after adding channel
@@ -146,25 +144,27 @@ export const ChannelSection = (props) => {
             onSubmit={onSubmit}
             onToggle={toggle}
            /> : null }
-           { showSearch ?  <div className="search-overlay">
-                <div className="search-overlay__header-container">
-                    <span className="search-overlay__header">Join Channels</span>
-                    <span className="search-overlay__close" onClick={closeSearch}> X </span>
-                </div>
-                <div className="search-overlay__body-container">
-                <span className="search-overlay__search-header"> List of all available channels </span>
-                    {channels.map((channel, index) => 
-                        <span key={index} className="search-overlay__search-results" onClick={selectChannel}>
-                            <span>
-                                # {channel.name}
-                            </span>
-                            <span className="search-overlay__search-results-date">
-                                Created on {formatTime(channel.date.toDate())}
-                            </span>
-                        </span>
-                    )}
-                </div>
-            </div> : null }
+           { showSearch ?  
+                <div className="search-overlay">
+                    <div className="search-overlay__header-container">
+                        <span className="search-overlay__header">Join Channels</span>
+                        <span className="search-overlay__close" onClick={closeSearch}> X </span>
+                    </div>
+                    <div className="search-overlay__body-container">
+                    <span className="search-overlay__search-header"> List of all available channels </span>
+                        {channels.map((channel, index) => 
+                            <div key={index} className="search-overlay__search-results" onClick={selectChannel}>
+                                <span>
+                                    # {channel.name}
+                                </span>
+                                <span className="search-overlay__search-results-date">
+                                    Created on {formatTime(channel.date.toDate())}
+                                </span>
+                            </div>
+                        )}
+                    </div>
+                </div> : null 
+            }
         </div>
     );
 };

@@ -23,7 +23,6 @@ export const MessageBoard = (props) => {
     const [hideSearchList, setHideSearchList] = useState(false);
     const [enableButton, setEnableButton] = useState(false);
     
-    
     useEffect(() => {
         getUsers();
         if(messages.length > 0) {
@@ -220,12 +219,16 @@ const ChatUserName = (props) => {
 };
 
 const MessageHeader = (props) => {
+    const messsageIsImg = props.message.includes("images");
     return (
         <div className="message-container">
             <UserAvatar user={props.user}/>
             <div className="message-header-container">
                 <ChatUserName user={props.user} time={props.date}/>
-                <span className="user-message">{props.message}</span>
+                {messsageIsImg ? 
+                    <img src={props.message} alt="image" className="image-aspect" />:
+                    <span className="user-message">{props.message}</span>
+                }
             </div>
         </div>
     );
@@ -236,10 +239,14 @@ const formatTime = (time) => {
 };
 
 const SimpleMessage = (props) => {
+    const messsageIsImg = props.message.includes("images");
     return(
         <div className="simple-message__container">
             <span className="simple-message__date">{formatTime(props.time)}</span>
-            <span className="simple-message__text"> {props.message} </span>
+            {messsageIsImg ? 
+                <img src={props.message} alt="image" className="image-aspect" />:
+                <span className="simple-message__text"> {props.message} </span>
+            }
         </div>
     );
 };
