@@ -11,14 +11,15 @@ export const Main = () => {
     const [boardData, setBoardData] = useState();
     const [loading, setLoading] = useState(true);
     const [isDirectMessage, setIsDirectMessage] = useState(false);
-    const [index, setIndex] = useState(0);
+    const [channelIndex, setChannelIndex] = useState(0);
+    const [dmIndex, setDmIndex] = useState(0);
 
     const currentUser = firebase.auth().currentUser;
 
     useEffect(() => {
         fetchChannelsData();
         fetchDirectMessagesData();
-    }, [index]);
+    }, [channelIndex, dmIndex]);
 
 
     const fetchChannelsData = () => {
@@ -41,7 +42,7 @@ export const Main = () => {
                 })
             });
             setAllChannels(allChannelsAr);
-            setData(channelsAr, index);
+            setData(channelsAr, channelIndex);
             if (channelsAr.length > 0) {
                 setLoading(false);
             }
@@ -69,7 +70,7 @@ export const Main = () => {
                     });
                 }
             });
-            setDms(dms);
+            setDms(dms, dmIndex);
         });
     }
 
@@ -95,7 +96,7 @@ export const Main = () => {
     const getChannelData = (menu) => {
         for(const channel of channels) {
             if (channel.name === menu) {
-                setIndex(channels.indexOf(channel));
+                setChannelIndex(channels.indexOf(channel));
                 return setBoardData(channel);
             }
         }
@@ -104,7 +105,7 @@ export const Main = () => {
     const getDmData = (name) => {
         for(const dm of directMessages) {
             if (dm.users[0].name === name || dm.users[1].name === name) {
-                setIndex(directMessages.indexOf(dm));
+                setDmIndex(directMessages.indexOf(dm));
                 return setBoardData(dm);
             }
         }

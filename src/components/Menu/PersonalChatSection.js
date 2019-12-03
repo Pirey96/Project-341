@@ -109,22 +109,26 @@ export const PersonalChatSection = (props) => {
 
 const DirectMessage = (props) => {
     return (
-        <div className="section__channel container_channel" onClick={props.onClick}>
+        <div className={props.selectedDM ? "section__channel no-select section__channel--selected" : "section__channel no-select"} 
+        onClick={props.onClick}>
             <span onClick={props.onClick}>{props.name}</span>
         </div>
     );
 }
 
 const DirectMessages = (props) => {
-    const dms = props.dms;
+    const dms = props.directMessages;
     const currentUser = props.uid;
-    let filteredChats = [];
 
     const directMessageNaming = (dm) => {
         if (dm.users[0].id === currentUser.uid) {
             return dm.users[1].name;
         }
         return dm.users[0].name;
+    }
+
+    const selectedDM = (message) => {
+        return props.selected === message;
     }
 
     return (
@@ -134,6 +138,7 @@ const DirectMessages = (props) => {
                 key={index} 
                 name={directMessageNaming(chat)} 
                 onClick={props.onClick} 
+                selectedDM={selectedDM(chat)}
                 />
             )}
         </div>
