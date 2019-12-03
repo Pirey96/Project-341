@@ -7,12 +7,8 @@ import firebase from "firebase";
 export const InputField = props => {
     const [message, setMessage] = useState("");
     const [image, setImage] = useState(null);
-    const [url, setUrl] = useState(null);
-    const [loading, setLoading] = useState(false);
     const [username, setUsername] = useState('');
 
-    const path = props.path;
-    const context = props.context;
     const sendTo = props.sendTo;
     
     useEffect(() => {
@@ -40,6 +36,8 @@ export const InputField = props => {
     };
 
     const uploadMessage = (newMesssage) => {
+        // const dest = destination();
+        // console.log(dest);
         let messagesRef = firebase
         .firestore()
         .collection("channels")
@@ -48,6 +46,10 @@ export const InputField = props => {
             messages: firebase.firestore.FieldValue.arrayUnion(newMesssage)
         });
     };
+
+    const destination = () => {
+        return props.isDirectMessage ? "directMessage" : "channels";
+    }
 
   
     const sendMessage = event => {
@@ -61,7 +63,6 @@ export const InputField = props => {
     };
 
     const test = abc => {
-        setLoading(abc);
     };
 
     const test1 = abc => {
@@ -100,8 +101,11 @@ export const InputField = props => {
     return(
         <div className="footer-container">
             <form className="input-field-container" onSubmit={sendMessage}>
-                <span className="input-field-container--icon" onClick={imageInputHandler}><PaperclipIcon /></span>
-                <input className="input-field-container--inputField" value={message} onChange={onChange} placeholder={'Message '} />
+                <div onChange={handleImageUpload}>
+                    <span className="input-field-container--icon"><PaperclipIcon /></span>
+                    <input className="testest" type="file" onChange={handleImageUpload} accept="image/*"/>
+                </div>
+                <input className="input-field-container--inputField" value={message} onChange={onChange} placeholder={'Message '} autoFocus/>
             </form>
             <div className={message.length > 2 ? "footer-tip footer-tip--displayed" : "footer-tip footer-tip--hidden"}>
                 <span className="footer-send-tip">
