@@ -10,6 +10,7 @@ export const Main = () => {
     const [directMessages, setDirectMessages] = useState([]);
     const [boardData, setBoardData] = useState();
     const [loading, setLoading] = useState(true);
+    const [isDirectMessage, setIsDirectMessage] = useState(false);
     const [index, setIndex] = useState(0);
 
     const currentUser = firebase.auth().currentUser;
@@ -63,7 +64,8 @@ export const Main = () => {
 
                 if (include) {
                     dms.push({
-                        ...directMessage
+                        ...directMessage,
+                        id: dmSnap.id
                     });
                 }
             });
@@ -80,12 +82,14 @@ export const Main = () => {
         setDirectMessages(d);
     }
 
-    const clickMenu = (event) => {
+    const clickChannelMenu = (event) => {
+        setIsDirectMessage(false);
         getChannelData(event.currentTarget.lastElementChild.innerText);
     };
 
     const clickDMMenu = (event) => {
-        getDmData(event.currentTarget.lastElementChild.innerText);
+        setIsDirectMessage(true);
+        getDmData(event.currentTarget.innerText);
     };
     
     const getChannelData = (menu) => {
@@ -99,7 +103,10 @@ export const Main = () => {
 
     const getDmData = (name) => {
         for(const dm of directMessages) {
-
+            if (dm.users[0].name === name || dm.users[1].name === name) {
+                setIndex(directMessages.indexOf(dm));
+                return setBoardData(dm);
+            }
         }
     }
 
@@ -110,7 +117,7 @@ export const Main = () => {
                 <Menu 
                 channels={channels} 
                 directMessages={directMessages} 
-                onChannelClick={clickMenu}
+                onChannelClick={clickChannelMenu}
                 onDMClick={clickDMMenu}
                 uid={currentUser}
                 selectedChannel={boardData}
@@ -121,6 +128,7 @@ export const Main = () => {
                 sendTo={boardData} 
                 boardData={boardData}
                 user={currentUser}
+                isDirectMessage={isDirectMessage}
                 />
             </React.Fragment>
             }

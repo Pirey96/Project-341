@@ -46,7 +46,6 @@ export const PersonalChatSection = (props) => {
     const selectUser = (event) => {
         const username = event.currentTarget.innerText;
         const user = getUser(username);
-        console.log(user);
 
         if (!props.dms.includes(username)) {
             createDMWith(user);
@@ -83,6 +82,7 @@ export const PersonalChatSection = (props) => {
             <DirectMessages 
             directMessages={props.directMessages} 
             uid={props.uid}
+            onClick={props.onClick}
             dms={props.dms}
             />
             { showSearch ?  
@@ -109,7 +109,7 @@ export const PersonalChatSection = (props) => {
 
 const DirectMessage = (props) => {
     return (
-        <div className="section__channel container_channel">
+        <div className="section__channel container_channel" onClick={props.onClick}>
             <span onClick={props.onClick}>{props.name}</span>
         </div>
     );
@@ -130,7 +130,11 @@ const DirectMessages = (props) => {
     return (
         <div className="section__channels">
             { dms.map((chat, index) => 
-                <DirectMessage key={index} name={directMessageNaming(chat)} onClick={props.onClick} />
+                <DirectMessage 
+                key={index} 
+                name={directMessageNaming(chat)} 
+                onClick={props.onClick} 
+                />
             )}
         </div>
     );
