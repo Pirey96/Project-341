@@ -6,6 +6,7 @@ import firebase from './../firebase.config';
 
 export const Main = () => {
     const [channels, setChannels] = useState([]);
+    const [allChannels, setAllChannels] = useState([]);
     const [directMessages, setDirectMessages] = useState([]);
     const [boardData, setBoardData] = useState();
     const [loading, setLoading] = useState(true);
@@ -24,6 +25,7 @@ export const Main = () => {
             setLoading(true);
             //include channel array since before it was outside the listenner an
             let channelsAr = [];
+            let allChannelsAr = [];
             snap.forEach(channel => {
                 const channelData = channel.data();
                 if(channelData.users.includes(currentUser.uid)){
@@ -32,7 +34,12 @@ export const Main = () => {
                         id: channel.id
                     });
                 }
+                allChannelsAr.push({
+                    ...channelData,
+                    id: channel.id
+                })
             });
+            setAllChannels(allChannelsAr);
             setData(channelsAr, index);
             if (channelsAr.length > 0) {
                 setLoading(false);
@@ -88,6 +95,7 @@ export const Main = () => {
                 onClick={clickMenu} 
                 uid={currentUser}
                 selectedChannel={boardData}
+                allChannels={allChannels}
                 />
                 <RightSection 
                 sendTo={boardData} 

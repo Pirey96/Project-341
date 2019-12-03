@@ -15,6 +15,7 @@ export const Menu = (props) => {
             onClick={props.onClick} 
             uid={props.uid} 
             selectedChannel={props.selectedChannel}
+            allChannels={props.allChannels}
             />
             <PersonalChatSection 
             directMessages={props.directMessages} 
