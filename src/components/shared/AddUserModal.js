@@ -31,7 +31,7 @@ export const AddUserModal = (props) => {
                     <FloatingLabelTextField 
                     autofocus={true}
                     small={true}
-                    placehoder={'Yian, @steve, Paul'} 
+                    placehoder='Yian, @steve, Paul' 
                     onChange={props.onNameChange} 
                     />
                 </div>

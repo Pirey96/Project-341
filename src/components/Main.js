@@ -94,6 +94,7 @@ export const Main = () => {
                 <RightSection 
                 sendTo={boardData} 
                 boardData={boardData}
+                user={currentUser}
                 />
             </React.Fragment>
             }

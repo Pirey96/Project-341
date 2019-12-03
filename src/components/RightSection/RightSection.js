@@ -11,7 +11,7 @@ export const RightSection = (props) => {
         <div className="main__layout--rightPannel">
             <SearchSection boardData={props.boardData} />
             <MessageBoard boardData={props.boardData} />
-            <InputField user={'test'} sendTo={props.boardData.id}/>
+            <InputField user={props.user} sendTo={props.boardData.id}/>
         </div>
     );
 };
