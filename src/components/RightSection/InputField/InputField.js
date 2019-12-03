@@ -27,7 +27,6 @@ export const InputField = props => {
 
     const getUserUsername = () => {
         firebase.database().ref('users/' + props.user.uid).on('value', (snapshot) => {
-            console.log(snapshot.val().username)
             setUsername(snapshot.val().username);
         });
     }
@@ -82,7 +81,7 @@ export const InputField = props => {
             storage().
             ref("images/" + image.name).
             put(image);
-            
+
             uploadImage.on("state_changed", snapshot => {
             }, error => {
                 console.log(error);
@@ -102,7 +101,7 @@ export const InputField = props => {
     return(
         <div className="footer-container">
             <form className="input-field-container" onSubmit={sendMessage}>
-                <span className="input-field-container--icon" onClick={handleImageUpload}><PaperclipIcon /></span>
+                <span className="input-field-container--icon" onClick={imageInputHandler}><PaperclipIcon /></span>
                 <input className="input-field-container--inputField" value={message} onChange={onChange} placeholder={'Message '} />
             </form>
             <div className={message.length > 2 ? "footer-tip footer-tip--displayed" : "footer-tip footer-tip--hidden"}>

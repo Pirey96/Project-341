@@ -24,7 +24,6 @@ export const Main = () => {
             setLoading(true);
             //include channel array since before it was outside the listenner an
             let channelsAr = [];
-            console.log(currentUser.uid);
             snap.forEach(channel => {
                 const channelData = channel.data();
                 if(channelData.users.includes(currentUser.uid)){
@@ -34,7 +33,6 @@ export const Main = () => {
                     });
                 }
             });
-            console.log(channelsAr);
             setData(channelsAr, index);
             if (channelsAr.length > 0) {
                 setLoading(false);

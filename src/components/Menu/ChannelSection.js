@@ -5,7 +5,6 @@ import { Toggle } from '../shared/toggle';
 import { BasicButton }  from '../shared/BasicButton';
 import { FloatingLabelTextField } from '../shared/FloatingLabelTextField';
 import firebase from 'firebase';
-import { EventEmitter } from 'events';
 
 
 export const ChannelSection = (props) => {
@@ -178,7 +177,7 @@ const PopUpAddChannel = (props) => {
                     errorEmptyField={props.channelExists ? channelAlreadyExistError : emptyFieldMessage} 
                     errorNameTooLong={nameTooLongMessage}
                     beforeIcon={'#'} 
-                    placehoder={'e.g. plan-budget'} 
+                    placeholder={'e.g. plan-budget'} 
                     onChange={props.onNameChange} 
                     maxLength={80}
                     />
