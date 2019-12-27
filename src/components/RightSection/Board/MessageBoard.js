@@ -226,7 +226,7 @@ const MessageHeader = (props) => {
             <div className="message-header-container">
                 <ChatUserName user={props.user} time={props.date}/>
                 {messsageIsImg ? 
-                    <img src={props.message} alt="image" className="image-aspect" />:
+                    <img src={props.message} alt="broken image" className="image-aspect" />:
                     <span className="user-message">{props.message}</span>
                 }
             </div>
@@ -244,7 +244,7 @@ const SimpleMessage = (props) => {
         <div className="simple-message__container">
             <span className="simple-message__date">{formatTime(props.time)}</span>
             {messsageIsImg ? 
-                <img src={props.message} alt="image" className="image-aspect" />:
+                <img src={props.message} alt="broken image" className="image-aspect" />:
                 <span className="simple-message__text"> {props.message} </span>
             }
         </div>

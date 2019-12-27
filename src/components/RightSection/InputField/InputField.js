@@ -101,7 +101,10 @@ export const InputField = props => {
     return(
         <div className="footer-container">
             <form className="input-field-container" onSubmit={sendMessage}>
-                <span className="input-field-container--icon" onClick={imageInputHandler}><PaperclipIcon /></span>
+                <div onChange={handleImageUpload}>
+                    <span className="input-field-container--icon"><PaperclipIcon /></span>
+                    <input className="testest" type="file" onChange={handleImageUpload} accept="image/*"/>
+                </div>
                 <input className="input-field-container--inputField" value={message} onChange={onChange} placeholder={'Message '} autoFocus/>
             </form>
             <div className={message.length > 2 ? "footer-tip footer-tip--displayed" : "footer-tip footer-tip--hidden"}>
